@@ -2,1143 +2,535 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Código Humano - CECyTE 24</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<title>Código Humano - CECyTE 24</title>
 
-        html {
-            scroll-behavior: smooth;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #fffaf6;
-            color: #41454a;
-            line-height: 1.7;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        header {
-            background-color: #f8d5c2;
-            padding: 25px 35px;
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffaf6;
+    color: #41454a;
+    line-height: 1.7;
+    transition: background-color 0.4s, color 0.4s;
+}
 
-        .logo {
-            width: 125px;
-            height: 125px;
-            flex-shrink: 0;
-            border: 2px solid #c9947d;
-            border-radius: 30px;
-            background-color: #fff4eb;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            padding: 5px;
-        }
+/* ENCABEZADO */
 
-        .logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 25px;
-            clip-path: inset(0 round 25px);
-        }
+header {
+    background-color: #f8d5c2;
+    padding: 25px 35px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    transition: 0.4s;
+}
 
-        .encabezado {
-            flex: 1;
-            text-align: center;
-        }
+.logo {
+    width: 125px;
+    height: 125px;
+    flex-shrink: 0;
+    border: 2px solid #c9947d;
+    border-radius: 30px;
+    background-color: #fff4eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 5px;
+}
 
-        header h1 {
-            color: #70544b;
-            font-size: 34px;
-            margin-bottom: 8px;
-        }
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+}
 
-        header p {
-            color: #70544b;
-            font-size: 17px;
-        }
+.encabezado {
+    flex: 1;
+    text-align: center;
+}
 
-        nav {
-            background-color: #bde7d4;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+header h1 {
+    color: #70544b;
+    font-size: 34px;
+    margin-bottom: 8px;
+}
 
-        nav a {
-            text-decoration: none;
-            color: #38594e;
-            padding: 14px 24px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
+header p {
+    color: #70544b;
+    font-size: 17px;
+}
 
-        nav a:hover {
-            background-color: #98d5ba;
-            border-radius: 25px;
-        }
+/* MENÚ DE NAVEGACIÓN */
 
-        main {
-            max-width: 1100px;
-            margin: auto;
-            padding: 20px;
-        }
+nav {
+    background-color: #bde7d4;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
 
-        section {
-            background-color: white;
-            padding: 30px;
-            margin: 25px 0;
-            border: 2px solid #f4dfd5;
-            border-radius: 25px;
-            box-shadow: 0 3px 10px #0000000b;
-            scroll-margin-top: 100px;
-        }
+nav a {
+    text-decoration: none;
+    color: #38594e;
+    padding: 14px 24px;
+    font-weight: bold;
+    transition: 0.3s;
+}
 
-        h2 {
-            color: #87635b;
-            margin-bottom: 18px;
-        }
+nav a:hover,
+nav a.activo {
+    background-color: #98d5ba;
+    border-radius: 25px;
+}
 
-        h3 {
-            color: #7966a0;
-            margin: 20px 0 10px;
-        }
+/* BOTÓN DE MODO OSCURO */
 
-        p {
-            margin-bottom: 12px;
-        }
+.contenedor-tema {
+    display: flex;
+    justify-content: flex-end;
+    max-width: 1100px;
+    margin: 15px auto 0;
+    padding: 0 20px;
+}
 
-        ul, ol {
-            margin: 12px 0 18px 25px;
-        }
+.boton-tema {
+    background-color: #7966a0;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 13px 22px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.3s;
+}
 
-        li {
-            margin-bottom: 8px;
-        }
+.boton-tema:hover {
+    background-color: #5c4a80;
+    transform: scale(1.04);
+}
 
-        .datos {
-            background-color: #e5f5ec;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 25px;
-        }
+/* CONTENIDO PRINCIPAL */
 
-        .tarjetas {
-            display: grid;
-            grid-template-columns:
-                repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
 
-        .tarjeta {
-            background-color: #e5f5ec;
-            padding: 20px;
-            border-radius: 25px;
-        }
+section {
+    background-color: white;
+    padding: 30px;
+    margin: 25px 0;
+    border: 2px solid #f4dfd5;
+    border-radius: 25px;
+    box-shadow: 0 3px 10px #0000000b;
+    transition: 0.4s;
+}
 
-        .tarjeta:nth-child(even) {
-            background-color: #eee6fa;
-        }
+h2 {
+    color: #87635b;
+    margin-bottom: 18px;
+}
 
-        .tarjeta h3 {
-            margin-top: 0;
-        }
+h3 {
+    color: #7966a0;
+    margin: 20px 0 10px;
+}
 
-        .problema {
-            background-color: #fff0df;
-            padding: 18px;
-            margin: 15px 0;
-            border-radius: 25px;
-        }
+p {
+    margin-bottom: 12px;
+}
 
-        .solucion {
-            background-color: #e3f4e9;
-            padding: 18px;
-            margin: 15px 0;
-            border-radius: 25px;
-        }
+/* DATOS DEL PROYECTO */
 
-        .paso {
-            background-color: #eee6fa;
-            padding: 17px;
-            margin: 12px 0;
-            border-radius: 25px;
-        }
+.datos {
+    background-color: #e5f5ec;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 25px;
+    transition: 0.4s;
+}
 
-        .paso:nth-child(even) {
-            background-color: #e4f5ef;
-        }
+/* IMÁGENES */
 
-        /* FOTOGRAFÍAS CON BORDES REDONDEADOS */
+.imagen-espacio {
+    width: 100%;
+    background-color: #fdf1e9;
+    border: 2px solid #d5ac9d;
+    border-radius: 35px;
+    margin: 25px 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 8px;
+    overflow: hidden;
+    transition: 0.4s;
+}
 
-        .imagen-espacio {
-            width: 100%;
-            background-color: #fdf1e9;
-            border: 2px solid #d5ac9d;
-            border-radius: 35px;
-            margin: 25px 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            gap: 8px;
-            overflow: hidden;
-        }
+.imagen-espacio img {
+    display: block;
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    max-height: 450px;
+    object-fit: contain;
+    border-radius: 35px;
+}
 
-        .imagen-espacio.menta {
-            background-color: #eaf8ef;
-            border-color: #9ccdb6;
-        }
+/* BOTÓN COMENZAR MI RUTA */
 
-        .imagen-espacio.lavanda {
-            background-color: #f2edfa;
-            border-color: #c2afd9;
-        }
+.boton-enlace {
+    display: inline-block;
+    background-color: #b9e4d0;
+    color: #35564a;
+    text-decoration: none;
+    border-radius: 25px;
+    padding: 13px 22px;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 10px 5px 10px 0;
+    transition: 0.3s;
+}
 
-        .imagen-espacio.azul {
-            background-color: #eaf4fb;
-            border-color: #accfe6;
-        }
+.boton-enlace:hover {
+    background-color: #95d3b6;
+    transform: translateY(-2px);
+}
 
-        .imagen-espacio strong {
-            color: #70544b;
-        }
+/* PIE DE PÁGINA */
 
-        img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-            border-radius: 35px;
-        }
+footer {
+    background-color: #f8d5c2;
+    color: #70544b;
+    text-align: center;
+    padding: 30px;
+    margin-top: 30px;
+    transition: 0.4s;
+}
 
-        .imagen-espacio img {
-            display: block;
-            width: 100%;
-            max-width: 700px;
-            height: auto;
-            max-height: 450px;
-            object-fit: contain;
-            border-radius: 35px !important;
-            clip-path: inset(0 round 35px);
-        }
+/* MODO OSCURO */
 
-        .diagrama {
-            max-width: 480px;
-            margin: 25px auto;
-            text-align: center;
-        }
+body.modo-oscuro {
+    background-color: #171923;
+    color: #e5e7eb;
+}
 
-        .cuadro {
-            background-color: #dff2eb;
-            border: 2px solid #9bcdb7;
-            border-radius: 25px;
-            padding: 15px;
-            margin: 8px auto;
-        }
+body.modo-oscuro header,
+body.modo-oscuro footer {
+    background-color: #292536;
+    color: #f3e9fa;
+}
 
-        .decision {
-            background-color: #fff0d7;
-            border: 2px solid #ebcf99;
-            border-radius: 25px;
-            padding: 18px;
-            margin: 12px auto;
-        }
+body.modo-oscuro header h1,
+body.modo-oscuro header p {
+    color: #f3e9fa;
+}
 
-        .flecha {
-            font-size: 22px;
-            color: #7966a0;
-            font-weight: bold;
-        }
+body.modo-oscuro nav {
+    background-color: #263d39;
+}
 
-        button {
-            background-color: #b9e4d0;
-            color: #35564a;
-            border: none;
-            border-radius: 25px;
-            padding: 13px 22px;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            margin: 10px 5px 10px 0;
-        }
+body.modo-oscuro nav a {
+    color: #e5fff3;
+}
 
-        button:hover {
-            background-color: #95d3b6;
-        }
+body.modo-oscuro nav a:hover,
+body.modo-oscuro nav a.activo {
+    background-color: #3e6257;
+}
 
-        select, textarea {
-            width: 100%;
-            padding: 13px;
-            margin: 12px 0;
-            border: 1px solid #c8b7d8;
-            border-radius: 25px;
-            font-family: Arial, sans-serif;
-            font-size: 15px;
-            background-color: white;
-        }
+body.modo-oscuro section {
+    background-color: #252936;
+    border-color: #46475b;
+}
 
-        textarea {
-            min-height: 110px;
-            resize: vertical;
-        }
+body.modo-oscuro h2 {
+    color: #ffcfb5;
+}
 
-        .actividad {
-            background-color: #eee6fa;
-            border-radius: 25px;
-            padding: 22px;
-            margin-top: 20px;
-        }
+body.modo-oscuro h3 {
+    color: #d2baff;
+}
 
-        .resultado {
-            background-color: white;
-            padding: 18px;
-            margin-top: 15px;
-            border-radius: 25px;
-            display: none;
-            overflow-wrap: anywhere;
-        }
+body.modo-oscuro .datos {
+    background-color: #343747;
+    color: #f0f0f5;
+}
 
-        .compromisos {
-            background-color: #fff0df;
-            padding: 20px;
-            border-radius: 25px;
-        }
+body.modo-oscuro .imagen-espacio {
+    background-color: #303443;
+    border-color: #62677a;
+}
 
-        .enlace {
-            color: #527b9d;
-            overflow-wrap: anywhere;
-        }
+body.modo-oscuro .logo {
+    background-color: #393342;
+    border-color: #8d7488;
+}
 
-        footer {
-            background-color: #f8d5c2;
-            color: #70544b;
-            text-align: center;
-            padding: 30px;
-            margin-top: 30px;
-        }
+body.modo-oscuro .boton-enlace {
+    background-color: #66558c;
+    color: white;
+}
 
-        @media (max-width: 600px) {
-            header {
-                flex-direction: column;
-                padding: 20px;
-                gap: 15px;
-            }
+body.modo-oscuro .boton-enlace:hover {
+    background-color: #8270ad;
+}
 
-            header h1 {
-                font-size: 26px;
-            }
+body.modo-oscuro .boton-tema {
+    background-color: #b9e4d0;
+    color: #35564a;
+}
 
-            nav a {
-                padding: 11px 13px;
-                font-size: 13px;
-            }
+body.modo-oscuro .boton-tema:hover {
+    background-color: #95d3b6;
+}
 
-            main {
-                padding: 10px;
-            }
+/* DISEÑO PARA CELULARES */
 
-            section {
-                padding: 20px;
-            }
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+    }
 
-            .imagen-espacio {
-                padding: 12px;
-            }
-        }
-    </style>
+    header h1 {
+        font-size: 26px;
+    }
+
+    nav a {
+        padding: 11px 13px;
+        font-size: 13px;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    section {
+        padding: 20px;
+    }
+
+    .imagen-espacio {
+        padding: 12px;
+    }
+
+    .contenedor-tema {
+        justify-content: center;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <header>
-        <div class="logo">
-            <img src="logo.jpg" alt="Logo del proyecto">
-        </div>
+<!-- ENCABEZADO -->
 
-        <div class="encabezado">
-            <h1>CÓDIGO HUMANO</h1>
-            <p>
-                Programando Rutas de Paz
-                para mi Bienestar Integral
-            </p>
-            <p>CECyTE 24 -  PAEC Cultura de la Paz - Ámbito Académico</p>
-            <p>Desarrollado por: Miguel Angel Ortega Pérez</p>
-        </div>
-    </header>
+<header>
+    <div class="logo">
+        <img src="logo.jpg" alt="Logo del proyecto">
+    </div>
 
-    <nav>
-        <a href="#inicio">Inicio</a>
-        <a href="#apertura">Apertura</a>
-        <a href="#desarrollo">Desarrollo</a>
-        <a href="#cierre">Cierre</a>
-        <a href="#recursos">Recursos</a>
-    </nav>
+    <div class="encabezado">
+        <h1>CÓDIGO HUMANO</h1>
 
-    <main>
-
-        <section id="inicio">
-            <h2>Bienvenidos a Código Humano</h2>
-
-            <p>
-                La paz también se programa.
-                Cada decisión que tomamos dentro
-                de nuestra escuela puede mejorar
-                o perjudicar la convivencia.
-            </p>
-
-            <p>
-                Esta plataforma tiene como objetivo
-                promover el respeto, la empatía,
-                el diálogo y la cooperación entre
-                estudiantes y profesores del CECyTE 24.
-            </p>
-
-            <div class="imagen-espacio">
-                <img
-                    src="Alumnos conviviendo.jpg"
-                    alt="Estudiantes conviviendo en la escuela">
-            </div>
-
-            <div class="datos">
-                <h3>Datos del proyecto</h3>
-                <p><strong>Institución:</strong> CECyTE 24</p>
-                <p><strong>Proyecto:</strong> Código Humano</p>
-                <p><strong>Ámbito:</strong> Académico</p>
-
-                <p><strong>Alumnos:</strong></p>
-                <p>Miguel Angel Ortega Pérez</p>
-                <p>Marco Antonio Cortez Valencia</p>
-                <p>Josue Nahum Fernandez Lima</p>
-                <p>Janeth Saldaña Hernandez</p>
-                <p>Carlos Alexander Rosete Pluma</p>
-
-                <p><strong>Grupo:</strong> 3C Programacion</p>
-            </div>
-
-            <h3>¿Qué ruta podemos programar?</h3>
-
-            <p>
-                Una ruta donde los conflictos
-                no se resuelvan con insultos
-                o violencia, sino mediante
-                decisiones responsables y pacíficas.
-            </p>
-
-            <button onclick="irA('apertura')">
-                Comenzar mi ruta
-            </button>
-        </section>
-
-        <section id="apertura">
-            <h2>1. Apertura: Identifico mi realidad</h2>
-
-            <h3>¿Qué es la Cultura de la Paz?</h3>
-
-            <p>
-                La Cultura de la Paz es un conjunto
-                de valores, actitudes y comportamientos
-                que promueven el respeto a los derechos
-                humanos, el rechazo a la violencia,
-                el diálogo y la solución pacífica
-                de conflictos.
-            </p>
-
-            <div class="imagen-espacio menta">
-                <img
-                    src="imagen2.jpg"
-                    alt="Cultura de la paz">
-            </div>
-
-            <h3>¿Por qué es importante en la escuela?</h3>
-
-            <p>
-                Porque permite que estudiantes,
-                docentes y personal escolar convivan
-                en un ambiente seguro, donde todas
-                las personas puedan aprender,
-                participar y expresar sus ideas
-                sin miedo a ser discriminadas.
-            </p>
-
-            <h3>
-                Las cinco dimensiones del bienestar integral
-            </h3>
-
-            <div class="tarjetas">
-
-                <div class="tarjeta">
-                    <h3>Bienestar emocional</h3>
-                    <p>
-                        Reconocer nuestras emociones
-                        y aprender a manejarlas.
-                    </p>
-                </div>
-
-                <div class="tarjeta">
-                    <h3>Bienestar social</h3>
-                    <p>
-                        Mantener relaciones basadas
-                        en el respeto y la cooperación.
-                    </p>
-                </div>
-
-                <div class="tarjeta">
-                    <h3>Convivencia</h3>
-                    <p>
-                        Resolver desacuerdos sin recurrir
-                        a insultos o agresiones.
-                    </p>
-                </div>
-
-                <div class="tarjeta">
-                    <h3>Bienestar académico</h3>
-                    <p>
-                        Estudiar en un ambiente de confianza,
-                        participación y aprendizaje.
-                    </p>
-                </div>
-
-                <div class="tarjeta">
-                    <h3>Bienestar físico</h3>
-                    <p>
-                        Cuidar nuestra salud y evitar
-                        situaciones que pongan en riesgo
-                        nuestra integridad.
-                    </p>
-                </div>
-
-            </div>
-
-            <div class="imagen-espacio lavanda">
-                <img
-                    src="Baaskegt.jpg"
-                    alt="Estudiantes realizando deporte">
-            </div>
-
-            <h3>
-                Problemas que afectan la convivencia escolar
-            </h3>
-
-            <div class="problema">
-                <strong>Conflictos entre estudiantes:</strong>
-                burlas, rumores, exclusión,
-                discriminación, acoso escolar
-                y desacuerdos en trabajos de equipo.
-            </div>
-
-            <div class="problema">
-                <strong>
-                    Conflictos entre alumnos y profesores:
-                </strong>
-                malentendidos, desacuerdos sobre
-                calificaciones, problemas de comunicación
-                y falta de respeto durante las clases.
-            </div>
-
-            <p>
-                Reconocer estos problemas es el primer
-                paso para buscar soluciones que beneficien
-                a toda la comunidad escolar.
-            </p>
-
-            <button onclick="irA('desarrollo')">
-                Continuar al desarrollo
-            </button>
-        </section>
-
-        <section id="desarrollo">
-            <h2>
-                2. Desarrollo: Programo mi Ruta de Paz
-            </h2>
-
-            <p>
-                Resolver un conflicto requiere seguir
-                una secuencia de acciones.
-                Al igual que en programación,
-                cada paso tiene una función importante.
-            </p>
-
-            <div class="imagen-espacio azul">
-                <img
-                    src="vero.jpg"
-                    alt="Diálogo y resolución de conflictos">
-            </div>
-
-            <h3>Mi código de paz: 7 acciones</h3>
-
-            <div class="paso">
-                <strong>1. Me detengo.</strong>
-                <p>
-                    Evito reaccionar impulsivamente
-                    cuando estoy enojado o molesto.
-                </p>
-            </div>
-
-            <div class="paso">
-                <strong>2. Identifico mis emociones.</strong>
-                <p>
-                    Reconozco lo que siento antes
-                    de responder.
-                </p>
-            </div>
-
-            <div class="paso">
-                <strong>3. Escucho.</strong>
-                <p>
-                    Permito que la otra persona
-                    explique su punto de vista.
-                </p>
-            </div>
-
-            <div class="paso">
-                <strong>4. Dialogo.</strong>
-                <p>
-                    Expreso lo que pienso con respeto,
-                    sin gritar ni insultar.
-                </p>
-            </div>
-
-            <div class="paso">
-                <strong>5. Busco alternativas.</strong>
-                <p>
-                    Propongo soluciones justas
-                    que no perjudiquen a nadie.
-                </p>
-            </div>
-
-            <div class="paso">
-                <strong>6. Llego a un acuerdo.</strong>
-                <p>
-                    Elijo junto con la otra persona
-                    una solución adecuada.
-                </p>
-            </div>
-
-            <div class="paso">
-                <strong>7. Construyo paz.</strong>
-                <p>
-                    Cumplo los acuerdos y reflexiono
-                    sobre lo que aprendí.
-                </p>
-            </div>
-
-            <h3>
-                Diagrama de flujo de mi Ruta de Paz
-            </h3>
-
-            <div class="diagrama">
-
-                <div class="cuadro">INICIO</div>
-                <div class="flecha">↓</div>
-
-                <div class="cuadro">
-                    Identifico el conflicto
-                </div>
-
-                <div class="flecha">↓</div>
-
-                <div class="cuadro">
-                    Me detengo y reconozco mis emociones
-                </div>
-
-                <div class="flecha">↓</div>
-
-                <div class="decision">
-                    ¿Puedo dialogar con respeto
-                    y de forma segura?
-                </div>
-
-                <p>
-                    <strong>NO:</strong>
-                    Me tranquilizo y, si es necesario,
-                    busco ayuda de una persona de confianza.
-                </p>
-
-                <p>
-                    <strong>SÍ:</strong>
-                    Escucho y expreso mi opinión.
-                </p>
-
-                <div class="flecha">↓</div>
-
-                <div class="cuadro">
-                    Busco soluciones y propongo acuerdos
-                </div>
-
-                <div class="flecha">↓</div>
-
-                <div class="decision">
-                    ¿Existe un acuerdo respetuoso y seguro?
-                </div>
-
-                <p>
-                    <strong>NO:</strong>
-                    Busco nuevas alternativas o mediación.
-                </p>
-
-                <p>
-                    <strong>SÍ:</strong>
-                    Cumplo el acuerdo y evalúo el resultado.
-                </p>
-
-                <div class="flecha">↓</div>
-
-                <div class="cuadro">
-                    FIN: CONSTRUYO PAZ
-                </div>
-
-            </div>
-
-            <h3>Algoritmo de paz</h3>
-
-            <div class="datos">
-                <p>MIENTRAS exista un conflicto:</p>
-
-                <ol>
-                    <li>Me detengo.</li>
-                    <li>Identifico mis emociones.</li>
-                    <li>Escucho a la otra persona.</li>
-                    <li>Dialogo con respeto.</li>
-                    <li>Busco soluciones.</li>
-                    <li>Propongo acuerdos.</li>
-                    <li>Evalúo el resultado.</li>
-                </ol>
-
-                <p>
-                    SI el acuerdo funciona, ENTONCES
-                    lo cumplo y mantengo el respeto.
-                </p>
-
-                <p>
-                    SI NO funciona, busco nuevas
-                    alternativas y apoyo de orientación.
-                </p>
-
-                <p>FIN MIENTRAS.</p>
-            </div>
-
-            <h3>Situaciones de la vida escolar</h3>
-
-            <div class="problema">
-                <strong>
-                    Caso 1: Burlas entre compañeros.
-                </strong>
-                <p>
-                    Un estudiante recibe comentarios
-                    ofensivos por su forma de hablar.
-                </p>
-            </div>
-
-            <div class="solucion">
-                <strong>Ruta de solución:</strong>
-                <p>
-                    Evitar participar en las burlas,
-                    apoyar al compañero afectado
-                    y comunicar la situación a un
-                    docente u orientación escolar.
-                    No se debe obligar a la víctima
-                    a enfrentar sola a quien la agrede.
-                </p>
-            </div>
-
-            <div class="imagen-espacio">
-                <strong>
-                    Respeto entre compañeros
-                </strong>
-
-                <img
-                    src="INCLUSION.JPG"
-                    alt="Respeto e inclusión entre compañeros">
-            </div>
-
-            <div class="problema">
-                <strong>
-                    Caso 2: Desacuerdo con un profesor.
-                </strong>
-                <p>
-                    Un alumno considera que su calificación
-                    no corresponde al trabajo que entregó.
-                </p>
-            </div>
-
-            <div class="solucion">
-                <strong>Ruta de solución:</strong>
-                <p>
-                    Solicitar una explicación con respeto,
-                    revisar los criterios de evaluación,
-                    presentar las evidencias del trabajo
-                    y buscar un acuerdo justo.
-                </p>
-            </div>
-
-            <div class="imagen-espacio menta">
-                <img
-                    src="alumnoprofe,jpg.png"
-                    alt="Comunicación entre alumno y profesor">
-            </div>
-
-            <div class="problema">
-                <strong>
-                    Caso 3: Conflicto en equipo.
-                </strong>
-                <p>
-                    Dos estudiantes discuten porque uno
-                    considera que el otro no participa
-                    en las actividades.
-                </p>
-            </div>
-
-            <div class="solucion">
-                <strong>Ruta de solución:</strong>
-                <p>
-                    Escuchar a ambos, distribuir
-                    responsabilidades, establecer
-                    fechas de entrega y revisar
-                    el cumplimiento de los acuerdos.
-                </p>
-            </div>
-
-            <div class="imagen-espacio lavanda">
-                <img
-                    src="airelonre.jpg"
-                    alt="Estudiantes trabajando en equipo">
-            </div>
-
-            <h3>
-                Actividad interactiva: Toma una decisión
-            </h3>
-
-            <div class="actividad">
-                <p>
-                    Un compañero se burla de otro
-                    estudiante durante una exposición.
-                    ¿Qué harías?
-                </p>
-
-                <select id="decision">
-                    <option value="">
-                        Selecciona una respuesta
-                    </option>
-
-                    <option value="a">
-                        Reírme para seguir la broma
-                    </option>
-
-                    <option value="b">
-                        Pedir respeto y apoyar al compañero
-                    </option>
-
-                    <option value="c">
-                        Responder con insultos
-                    </option>
-
-                    <option value="d">
-                        Grabar y compartir el momento
-                    </option>
-                </select>
-
-                <button onclick="evaluarDecision()">
-                    Comprobar respuesta
-                </button>
-
-                <div
-                    id="resultado"
-                    class="resultado"
-                    aria-live="polite">
-                </div>
-            </div>
-
-            <button onclick="irA('cierre')">
-                Continuar al cierre
-            </button>
-        </section>
-
-        <section id="cierre">
-            <h2>
-                3. Cierre: Mi compromiso con la paz
-            </h2>
-
-            <p>
-                La Cultura de la Paz no se construye
-                únicamente con palabras, sino con
-                acciones que realizamos diariamente.
-            </p>
-
-            <div class="imagen-espacio azul">
-                <img
-                    src="convivencia.jpg"
-                    alt="Convivencia escolar">
-            </div>
-
-            <h3>Mis compromisos personales</h3>
-
-            <div class="compromisos">
-                <ul>
-                    <li>Escuchar antes de juzgar.</li>
-                    <li>
-                        Respetar a mis compañeros
-                        y profesores.
-                    </li>
-                    <li>
-                        Evitar las burlas y la discriminación.
-                    </li>
-                    <li>
-                        Resolver desacuerdos mediante el diálogo.
-                    </li>
-                    <li>
-                        Pedir ayuda cuando un conflicto lo requiera.
-                    </li>
-                </ul>
-            </div>
-
-            <h3>Compromisos colectivos</h3>
-
-            <p>
-                Como comunidad escolar podemos
-                establecer acuerdos para mejorar
-                la convivencia:
-            </p>
-
-            <ul>
-                <li>Respetar las diferentes opiniones.</li>
-                <li>
-                    Trabajar en equipo sin excluir a nadie.
-                </li>
-                <li>Evitar la violencia verbal y física.</li>
-                <li>Apoyar a quienes necesitan ayuda.</li>
-                <li>Promover espacios de diálogo.</li>
-            </ul>
-
-            <h3>Mi compromiso personal</h3>
-
-            <p>
-                Escribe una acción que realizarás
-                para mejorar la convivencia escolar.
-            </p>
-
-            <textarea
-                id="compromiso"
-                placeholder="Me comprometo a...">
-            </textarea>
-
-            <button onclick="guardarCompromiso()">
-                Mostrar mi compromiso
-            </button>
-
-            <div
-                id="mensajeCompromiso"
-                class="resultado"
-                aria-live="polite">
-            </div>
-
-            <h3>Mensaje final</h3>
-
-            <div class="solucion">
-                <p>
-                    "La paz no es solamente la ausencia
-                    de conflictos; es aprender a resolver
-                    nuestras diferencias con respeto,
-                    diálogo, empatía y cooperación".
-                </p>
-            </div>
-
-            <p>
-                Mi compromiso comienza con mis decisiones.
-                Cada acción respetuosa contribuye a
-                construir una escuela más segura,
-                inclusiva y pacífica.
-            </p>
-
-            <button onclick="irA('recursos')">
-                Consultar recursos
-            </button>
-        </section>
-
-        <section id="recursos">
-            <h2>Recursos y fuentes de consulta</h2>
-
-            <p>
-                Para conocer más sobre la Cultura de la Paz,
-                la convivencia escolar y los derechos
-                humanos, puedes consultar las siguientes
-                instituciones.
-            </p>
-
-            <h3>Fuentes confiables</h3>
-
-            <ol>
-                <li>
-                    UNESCO. (s. f.).
-                    <em>Cultura de paz y no violencia.</em>
-                    Organización de las Naciones Unidas
-                    para la Educación, la Ciencia y la Cultura.
-
-                    <a
-                        class="enlace"
-                        href="https://www.unesco.org/es"
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        https://www.unesco.org/es
-                    </a>
-                </li>
-
-                <li>
-                    UNICEF. (s. f.).
-                    <em>
-                        Protección de niñas, niños
-                        y adolescentes.
-                    </em>
-
-                    <a
-                        class="enlace"
-                        href="https://www.unicef.org/es"
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        https://www.unicef.org/es
-                    </a>
-                </li>
-
-                <li>
-                    Organización Mundial de la Salud.
-                    (s. f.).
-                    <em>Salud y bienestar.</em>
-
-                    <a
-                        class="enlace"
-                        href="https://www.who.int/es"
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        https://www.who.int/es
-                    </a>
-                </li>
-            </ol>
-
-            <h3>¿Dónde pedir ayuda?</h3>
-
-            <p>
-                Si tienes un problema de convivencia
-                escolar, puedes acudir a orientación
-                educativa, tutorías, un docente de
-                confianza o las autoridades escolares.
-            </p>
-
-            <p>
-                Si existe violencia, acoso o una situación
-                de riesgo, es importante solicitar
-                apoyo y no intentar resolverla sin ayuda.
-            </p>
-
-            <div class="imagen-espacio menta">
-                <img
-                    src="orientacion.jpg"
-                    alt="Orientación escolar">
-            </div>
-
-            <h3>Créditos</h3>
-
-            <p>
-                Proyecto académico elaborado para
-                promover la Cultura de la Paz
-                en el CECyTE 24.
-            </p>
-
-            <p>
-                <strong>Elaborado por:</strong>
-                Miguel Angel Ortega Pérez y Chat GPT
-            </p>
-
-            <p>
-                <strong>Grupo:</strong>
-                3C Programación
-            </p>
-
-            <button onclick="irA('inicio')">
-                Regresar al inicio
-            </button>
-        </section>
-
-    </main>
-
-    <footer>
-        <p><strong>CÓDIGO HUMANO</strong></p>
         <p>
             Programando Rutas de Paz
-            para mi Bienestar Integral
+            para la Cultura de la Paz
         </p>
-        <p>CECyTE 24</p>
-        <p>La paz también se programa.</p>
-    </footer>
 
-    <script>
-        function irA(seccion) {
-            document.getElementById(seccion)
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
-        }
+        <p>
+            CECyTE 24 - PAEC Cultura de la Paz -
+            Dimension Académica
+        </p>
 
-        function evaluarDecision() {
-            let decision =
-                document.getElementById("decision").value;
+        <p>
+            Desarrollado por: Ortega Perez Miguel Angel
+        </p>
+    </div>
+</header>
 
-            let resultado =
-                document.getElementById("resultado");
+<!-- MENÚ DE NAVEGACIÓN -->
 
-            resultado.style.display = "block";
+<nav>
+    <a href="portada.html">Portada</a>
+    <a href="index.html" class="activo">Inicio</a>
+    <a href="apertura.html">Apertura</a>
+    <a href="desarrollo.html">Desarrollo</a>
+    <a href="cierre.html">Cierre</a>
+    <a href="recursos.html">Recursos</a>
+</nav>
 
-            if (decision === "b") {
-                resultado.textContent =
-                    "¡Muy bien! Apoyar a un compañero " +
-                    "y pedir respeto ayuda a construir " +
-                    "una convivencia pacífica.";
-            } else if (decision === "") {
-                resultado.textContent =
-                    "Selecciona una respuesta para continuar.";
-            } else {
-                resultado.textContent =
-                    "Esta decisión no ayuda a resolver " +
-                    "el problema. Es mejor evitar las " +
-                    "agresiones, apoyar a la persona " +
-                    "afectada y buscar ayuda si es necesario.";
-            }
-        }
+<!-- CAMBIAR TEMA -->
 
-        function guardarCompromiso() {
-            let compromiso =
-                document.getElementById("compromiso").value.trim();
+<div class="contenedor-tema">
+    <button
+        id="botonTema"
+        class="boton-tema"
+        onclick="cambiarTema()">
+        🌙 Activar modo oscuro
+    </button>
+</div>
 
-            let mensaje =
-                document.getElementById("mensajeCompromiso");
+<!-- CONTENIDO -->
 
-            mensaje.style.display = "block";
+<main>
 
-            if (compromiso === "") {
-                mensaje.textContent =
-                    "Primero escribe tu compromiso con la paz.";
-            } else {
-                mensaje.textContent =
-                    "Mi compromiso con la paz: " + compromiso;
-            }
-        }
-    </script>
+<section id="inicio">
+
+    <h2>Bienvenidos a Código Humano</h2>
+
+    <p>
+        La paz también se programa.
+        Cada decisión que tomamos dentro
+        de nuestra escuela puede mejorar
+        o perjudicar la convivencia.
+    </p>
+
+    <p>
+        Esta plataforma tiene como objetivo
+        promover el respeto, la empatía,
+        el diálogo y la cooperación entre
+        estudiantes y profesores del CECyTE 24.
+    </p>
+
+    <div class="imagen-espacio">
+        <img
+            src="Alumnos conviviendo.jpg"
+            alt="Estudiantes conviviendo en la escuela">
+    </div>
+
+    <div class="datos">
+
+        <h3>Datos del proyecto</h3>
+
+        <p>
+            <strong>Institución:</strong>
+            CECyTE 24
+        </p>
+
+        <p>
+            <strong>Proyecto:</strong>
+            Código Humano
+        </p>
+
+        <p>
+            <strong>Dimension:</strong>
+            Académico
+        </p>
+
+        <h3>Estudiantes</h3>
+
+        <p>Miguel Angel Ortega Pérez</p>
+        <p>Marco Antonio Cortez Valencia</p>
+        <p>Josue Nahum Fernandez Lima</p>
+        <p>Janeth Saldaña Hernandez</p>
+        <p>Carlos Alexander Rosete Pluma</p>
+
+        <p>
+            <strong>Grupo:</strong>
+            3C Programacion
+        </p>
+
+    </div>
+
+    <h3>¿Qué ruta podemos programar?</h3>
+
+    <p>
+        Una ruta donde los conflictos
+        no se resuelvan con insultos
+        o violencia, sino mediante
+        decisiones responsables y pacíficas.
+    </p>
+
+    <!-- ENLACE DIRECTO A APERTURA -->
+
+    <a href="apertura.html" class="boton-enlace">
+        Comenzar mi ruta
+    </a>
+
+</section>
+
+</main>
+
+<!-- PIE DE PÁGINA -->
+
+<footer>
+    <p><strong>CÓDIGO HUMANO</strong></p>
+
+    <p>
+        Programando Rutas de Paz
+        para mi Bienestar Integral
+    </p>
+
+    <p>CECyTE 24</p>
+
+    <p>La paz también se programa.</p>
+</footer>
+
+<!-- FUNCIONES -->
+
+<script>
+function cambiarTema() {
+    const oscuro =
+        document.body.classList.toggle("modo-oscuro");
+
+    localStorage.setItem(
+        "temaCodigoHumano",
+        oscuro ? "oscuro" : "claro"
+    );
+
+    actualizarBotonTema();
+}
+
+function actualizarBotonTema() {
+    const boton = document.getElementById("botonTema");
+
+    if (!boton) return;
+
+    const oscuro =
+        document.body.classList.contains("modo-oscuro");
+
+    boton.textContent = oscuro
+        ? "☀️ Activar modo claro"
+        : "🌙 Activar modo oscuro";
+}
+
+function cargarTemaGuardado() {
+    const tema =
+        localStorage.getItem("temaCodigoHumano");
+
+    document.body.classList.toggle(
+        "modo-oscuro",
+        tema === "oscuro"
+    );
+
+    actualizarBotonTema();
+}
+
+cargarTemaGuardado();
+</script>
 
 </body>
 </html>
