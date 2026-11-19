@@ -1,0 +1,309 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Portada | Código Humano</title>
+
+    <!-- FUENTE POPPINS -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* CONFIGURACIÓN GENERAL */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+
+        /* PORTADA CON FOTOGRAFÍA DE FONDO */
+
+        .portada {
+            width: 100%;
+            min-height: 100vh;
+            min-height: 100dvh;
+
+            background-image: url("portada.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 35px 20px;
+            text-align: center;
+        }
+
+        /* CONTENEDOR DEL ENCABEZADO */
+
+        .contenido {
+            width: 100%;
+            max-width: 850px;
+
+            padding: 40px 35px;
+
+            background: rgba(255, 255, 255, 0.88);
+
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.18);
+
+            animation: aparecer 1s ease;
+        }
+
+        /* NOMBRE DE LA INSTITUCIÓN */
+
+        .institucion {
+            display: inline-block;
+
+            background-color: #e3f3e9;
+            color: #3b7159;
+
+            padding: 9px 20px;
+
+            border-radius: 30px;
+
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+
+            margin-bottom: 20px;
+        }
+
+        /* TÍTULO PRINCIPAL */
+
+        h1 {
+            font-size: clamp(38px, 7vw, 78px);
+            font-weight: 800;
+
+            line-height: 1.15;
+            letter-spacing: 2px;
+
+            color: #416c59;
+
+            margin-bottom: 20px;
+        }
+
+        /* LÍNEA DECORATIVA */
+
+        .linea {
+            width: 130px;
+            height: 5px;
+
+            background: linear-gradient(
+                to right,
+                #a6dcc1,
+                #cbb7e8,
+                #f6c7b4
+            );
+
+            margin: 0 auto 25px;
+            border-radius: 20px;
+        }
+
+        /* NOMBRE DEL PROYECTO */
+
+        .subtitulo {
+            font-size: clamp(17px, 3vw, 25px);
+            font-weight: 600;
+
+            color: #655681;
+
+            line-height: 1.5;
+
+            margin-bottom: 25px;
+        }
+
+        /* DATOS DEL PROYECTO */
+
+        .datos {
+            font-size: 14px;
+            color: #5e6268;
+            line-height: 1.9;
+
+            margin-bottom: 30px;
+        }
+
+        /* BOTÓN DE ENTRADA */
+
+        .boton-entrar {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+
+            background: #a9ddc1;
+            color: #285443;
+
+            text-decoration: none;
+
+            padding: 16px 36px;
+            border-radius: 40px;
+
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 700;
+
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+
+            transition: transform .3s, background .3s;
+        }
+
+        .boton-entrar:hover {
+            background: #89cdaa;
+            transform: translateY(-4px);
+        }
+
+        .boton-entrar:focus-visible {
+            outline: 3px solid #655681;
+            outline-offset: 4px;
+        }
+
+        .flecha {
+            font-size: 22px;
+        }
+
+        /* ANIMACIÓN */
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ADAPTACIÓN A CELULARES */
+
+        @media (max-width: 600px) {
+
+            .portada {
+                padding: 20px 15px;
+            }
+
+            .contenido {
+                padding: 30px 20px;
+                border-radius: 22px;
+            }
+
+            h1 {
+                font-size: 38px;
+                letter-spacing: 1px;
+            }
+
+            .institucion {
+                font-size: 10px;
+                letter-spacing: 1px;
+            }
+
+            .subtitulo {
+                font-size: 17px;
+            }
+
+            .datos {
+                font-size: 12px;
+            }
+
+            .boton-entrar {
+                padding: 14px 25px;
+                font-size: 14px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .contenido {
+                animation: none;
+            }
+
+            .boton-entrar {
+                transition: none;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- PORTADA PRINCIPAL -->
+
+    <main class="portada">
+
+        <div class="contenido">
+
+            <!-- INSTITUCIÓN -->
+
+            <div class="institucion">
+                CECyTE 24 · CULTURA DE LA PAZ
+            </div>
+
+            <!-- TÍTULO PRINCIPAL -->
+
+            <h1>
+                CÓDIGO HUMANO
+            </h1>
+
+            <!-- DECORACIÓN -->
+
+            <div class="linea"></div>
+
+            <!-- NOMBRE DEL PROYECTO -->
+
+            <p class="subtitulo">
+                Programando Rutas de Paz
+                para mi Bienestar Integral
+            </p>
+
+            <!-- DATOS -->
+
+            <div class="datos">
+                <p>
+                    PAEC Cultura de la Paz
+                    · Dimensión Académica
+                </p>
+
+                <p>
+                    Desarrollado por:
+                    Ortega Perez Miguel Angel
+                </p>
+            </div>
+
+            <!-- BOTÓN HACIA INDEX.HTML -->
+
+            <a href="index.html" class="boton-entrar">
+                Comenzar mi ruta
+                <span class="flecha">&rarr;</span>
+            </a>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
